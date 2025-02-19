@@ -1,0 +1,126 @@
+<!--CHONG CHAR YUN-->
+<!--WB Project Individual-->
+<!--Tools.html-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tools Page</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: white; }
+        .container { width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        input, button { margin: 5px; padding: 10px; }
+    </style>
+    <script>
+        // Calculator Function
+        function calculate(operator) {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let result = 0;
+            if (operator === '+') result = num1 + num2;
+            else if (operator === '-') result = num1 - num2;
+            else if (operator === '*') result = num1 * num2;
+            else if (operator === '/') result = num1 / num2;
+            document.getElementById("calcResult").innerText = "Result: " + result;
+        }
+
+        // BMI Checker Function
+        function calculateBMI() {
+            let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value) / 100; // Convert cm to meters
+            let bmi = (weight / (height * height)).toFixed(2);
+            document.getElementById("bmiResult").innerText = "BMI: " + bmi;
+        }
+
+        // Zakat & Income Tax Calculator Function
+        function calculateZakatTax() {
+            let income = parseFloat(document.getElementById("income").value);
+            let taxRate;
+            if(income<5000){
+	       taxRate=0;
+ 	    }
+ 	    else if(income>=5000 && income<10000){
+ 	       taxRate=1;
+	    }
+            else if(income>=10000 && income<30000){
+ 	       taxRate=2;
+	    }
+ 	    else if(income>=30000 && income<50000){
+  	       taxRate=3;
+            }
+ 	    else{
+  	       taxRate=4;
+            }
+
+	    let taxDue=(income*taxRate)/100;
+            document.getElementById("tax").innerText="Income Tax: RM "+taxDue.toFixed(2);
+        }
+
+
+
+
+
+        // Unit Converter Function
+        function convertUnit(type) {
+            let value = parseFloat(document.getElementById("unitInput").value);
+            let result = 0;
+            if (type === 'cm-m') result = value / 100;
+            else if (type === 'm-cm') result = value * 100;
+            else if (type === 'm-km') result = value / 1000;
+            else if (type === 'km-m') result = value * 1000;
+            document.getElementById("unitResult").innerText = "Converted: " + result;
+        }
+    </script>
+</head>
+<body>
+
+    <!--<a href="Main.html">🏠 Home</a> <!--link to ???.html-->-->
+<a href="#" onclick="parent.postMessage('scrollToHome', '*');" class="w3-button w3-blue">🏠 Home</a>
+
+    <!--<a href="personalInfo.html" class="w3-button w3-teal w3-round">📄 Personal Info</a>-->
+<a href="#" onclick="parent.postMessage('scrollToPersonalInfo', '*');" class="w3-button w3-teal">📄 Personal Info</a>
+
+
+    <!-- Calculator Section -->
+    <div class="container">
+        <h2>Calculator</h2>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number"><br>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+        <p id="calcResult">Result: </p>
+    </div>
+
+    <!-- BMI Checker Section -->
+    <div class="container">
+        <h2>BMI Checker</h2>
+        <input type="number" id="weight" placeholder="Weight in kg">
+        <input type="number" id="height" placeholder="Height in cm">
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <p id="bmiResult">BMI: </p>
+    </div>
+
+    <!-- Income Tax Calculator Section -->
+    <div class="container">
+        <h2>Income Tax Calculator</h2>
+        <input type="number" id="income" placeholder="Enter yearly income (RM)">
+        <button onclick="calculateZakatTax()">Calculate</button>
+        <p id="tax">Income Tax: </p>
+    </div>
+
+    <!-- Unit Converter Section -->
+    <div class="container">
+        <h2>Unit Converter</h2>
+        <input type="number" id="unitInput" placeholder="Enter value"><br>
+        <button onclick="convertUnit('cm-m')">cm to m</button>
+        <button onclick="convertUnit('m-cm')">m to cm</button>
+        <button onclick="convertUnit('m-km')">m to km</button>
+        <button onclick="convertUnit('km-m')">km to m</button>
+        <p id="unitResult">Converted: </p>
+    </div>
+
+</body>
+</html>
